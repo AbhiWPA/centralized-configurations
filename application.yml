@@ -1,0 +1,34 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-service
+  profiles:
+     active: native
+  cloud:
+    config:
+      uri: http://localhost
+      label: master
+  
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:192.168.20.29}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:epic_ipg}
+    username: ${MYSQL_USERNAME:epicpay}
+    password: ${MYSQL_PASSWORD:Password@123}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+#   # cloud:
+#   #   config:
+#   #     server:
+#   #       native:
+#   #         search-locations: "classpath:/config"
+#   #       bootstrap: true
+# spring:
+  
