@@ -23,3 +23,10 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
+
+# JWT Configurations
+jwt:
+ secret:
+   key: 4d18dc1f7aeb498671077ac77227a985d38ac11e6c18686c3fa1562990419e5c
+ expiration:
+   time: 1440
