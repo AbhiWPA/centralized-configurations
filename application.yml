@@ -10,7 +10,7 @@ spring:
   cloud:
     config:
       uri: http://localhost  # Not needed in the GitHub config file. This should be in the client services' bootstrap.yml.
-      label: master  # This should be default-label: "main" if you are using the main branch. 
+      label: main  # This should be default-label: "main" if you are using the main branch. 
 
   datasource:
     url: jdbc:mysql://${MYSQL_HOST:192.168.20.29}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:epic_ipg}
