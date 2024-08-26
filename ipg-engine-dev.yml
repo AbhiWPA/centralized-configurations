@@ -9,8 +9,6 @@ app:
 spring:
   application:
     name: ipg-engine
-  config:
-    import: optional:configserver:${CONFIG_SERVER_URI:http://localhost:8888}
   datasource:
     url: jdbc:mysql://${MYSQL_HOST:epictechdev.com}:${MYSQL_PORT:50289}/${MYSQL_DATABASE:epic_ipg}
     username: ${MYSQL_USERNAME:epicpay}
