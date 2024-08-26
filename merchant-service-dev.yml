@@ -1,31 +1,7 @@
 server:
   port: 8082
   path: /api/v1/merchant
-
-
-app:
-  version: V1.00.00.0
-
-# Open API Configurations
-springdoc:
-  api-docs:
-    enabled: true
-    path: /api-docs
-  swagger-ui:
-    path: /swagger
-    enabled: true
-
 spring:
-  application:
-    name: merchant-service
-  main:
-    allow-bean-definition-overriding: true
-  application:
-    name: merchant-service
-  config:
-    import: optional:configserver:${CONFIG_SERVER_URI:http://localhost:8888}
-  profiles:
-    active: native
   datasource:
     url: jdbc:mysql://${MYSQL_HOST:192.168.20.29}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:epic_ipg}
     username: ${MYSQL_USERNAME:epicpay}
@@ -44,27 +20,9 @@ spring:
       enabled: true
     restart:
       log-condition-evaluation-delta: false
-eureka:
-  client:
-    registerWithEureka: true
-    fetchRegistry: true
-    serviceUrl:
-      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
-  instance:
-    hostname: localhost
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
-  endpoint:
-    prometheus:
-      enabled: true
-  prometheus:
-    metrics:
-      export:
-        enabled: true
+app:
+  welcomeMsg: Hello from the client configuration application(DEV Environment).
+  version: V1.00.00.0
 
 # JWT Configurations
 jwt:
@@ -97,3 +55,36 @@ file:
 
 server-url:
   http://192.168.20.29
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    prometheus:
+      enabled: true
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
+openapi:
+  service:
+    title: EPIC PAY IPG - MERCHANT SERVICE
+    version:  V1.00.00.0
+    url: ${GATEWAY_SERVICE_URI:http://localhost:8081}
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+  swagger-ui:
+    path: /swagger
+    enabled: true
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+  service-url:
+    defaultZone: http://localhost:8761/eureka
