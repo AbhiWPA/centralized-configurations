@@ -1,3 +1,8 @@
+server:
+  port: 8082
+  path: /api/v1/merchant
+
+
 app:
   version: V1.00.00.0
 
@@ -11,6 +16,8 @@ springdoc:
     enabled: true
 
 spring:
+  application:
+    name: merchant-service
   main:
     allow-bean-definition-overriding: true
   application:
