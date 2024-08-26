@@ -1,0 +1,90 @@
+server:
+  port: 8086
+  path: /api/v1/aggregator
+
+app:
+  version: V1.00.00.0
+
+aggregator:
+  config:
+    base-url: http://192.168.20.29:8085
+    redirect-url: http://192.168.20.27:8095/home?status=
+
+spring:
+  application:
+    name: aggregator-service
+  config:
+    import: optional:configserver:${CONFIG_SERVER_URI:http://localhost:8888}
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:192.168.20.29}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:epic_ipg}
+    username: ${MYSQL_USERNAME:epicpay}
+    password: ${MYSQL_PASSWORD:Password@123}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      log-condition-evaluation-delta: false
+openapi:
+  service:
+    title: EPIC PAY IPG - AGGREGATOR SERVICE
+    version:  V1.00.00.0
+    url: ${GATEWAY_SERVICE_URI:http://localhost:8081}
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+  swagger-ui:
+    path: /swagger
+    enabled: true
+eureka:
+#  instance:
+#    preferIpAddress: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+  service-url:
+    defaultZone: http://localhost:8761/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    prometheus:
+      enabled: true
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
+logging:
+  level:
+    org:
+      springframework: WARN
+      hibernate: WARN
+    com:
+      epic:
+        merchant: TRACE
+    org.springframework.boot.context.properties: DEBUG
+  file:
+    path: ${file.root.path}/LOGS
+
+file:
+  root:
+    path: /opt
+  max:
+    file-size: 1024MB
+  upload-dir: ${file.root.path}/FILES/
+  temp-dir: ${file.root.path}/TEMP_FILES/
+  error-dir: ${file.root.path}/LOGS/ERROR/
+  encodekey: h8hGqKO/jMriLddfo7xNIg==
