@@ -1,6 +1,10 @@
 server:
   port: 8086
   path: /api/v1/aggregator
+
+app:
+  version: V1.00.00.0
+
 aggregator:
   config:
     base-url: http://192.168.20.29:8085
