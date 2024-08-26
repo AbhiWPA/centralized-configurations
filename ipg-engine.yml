@@ -1,0 +1,85 @@
+server:
+  port: 8084
+app:
+  version: V1.00.00.0
+spring:
+  application:
+    name: ipg-engine
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:epictechdev.com}:${MYSQL_PORT:50289}/${MYSQL_DATABASE:epic_ipg}
+    username: ${MYSQL_USERNAME:epicpay}
+    password: ${MYSQL_PASSWORD:Password@123}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+  data:
+    redis:
+      database: 0
+      host: 192.168.20.29
+      port: 6379
+      password: Password@123
+      timeout: 60000
+
+openapi:
+  service:
+    title: EPIC PAY IPG - IPG ENGINE
+    version:  V1.00.00.0
+    url: ${GATEWAY_SERVICE_URI:http://localhost:8081}
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+  swagger-ui:
+    path: /swagger
+    enabled: true
+eureka:
+  client:
+    enabled: true
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    prometheus:
+      enabled: true
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
+mpgs:
+  base:
+    url: https://dfccbankplc.gateway.mastercard.com/api/rest/version/81/merchant
+  merchant:
+    id: TESTEPICIPGTtLKR
+    password: a69a182bd62bedaf16214cd1acac7132
+
+logging:
+  level:
+    root: WARN
+    com:
+      epic:
+        ipgengine: TRACE
+
+ipg:
+  config:
+    base-url: https://epictechdev.com:50309
+
+ipay:
+  config:
+    base-url: https://sandbox.ipay.lk/ipg/checkout
+    token: eyJhbGciOiJIUzUxMiJ9.eyJtaWQiOiIwMDAwMDY3MSJ9.l5l2racQDeGRIIqWKpy7xVLTisUiFuSDWeEXqvmiDLe16eCmBprvOvQKYOZ3gFkXt4s8dgYM8mBDTOS74IBw2g
+    secret: Password@123
+
