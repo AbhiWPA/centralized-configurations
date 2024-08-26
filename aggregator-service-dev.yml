@@ -1,10 +1,6 @@
 server:
   port: 8086
   path: /api/v1/aggregator
-
-app:
-  version: V1.00.00.0
-
 aggregator:
   config:
     base-url: http://192.168.20.29:8085
@@ -13,8 +9,6 @@ aggregator:
 spring:
   application:
     name: aggregator-service
-  config:
-    import: optional:configserver:${CONFIG_SERVER_URI:http://localhost:8888}
   datasource:
     url: jdbc:mysql://${MYSQL_HOST:192.168.20.29}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:epic_ipg}
     username: ${MYSQL_USERNAME:epicpay}
