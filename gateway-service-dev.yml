@@ -5,10 +5,6 @@ spring:
     name: gateway-service
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: false
-          lowerCaseServiceId: true
       routes:
         - id: merchant-service
           uri: lb://merchant-service
