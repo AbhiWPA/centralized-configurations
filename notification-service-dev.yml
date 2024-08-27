@@ -1,9 +1,9 @@
-server:
-  port: 8083
-  path: /api/v1/notification
+# server:
+#   port: 8083
+#   path: /api/v1/notification
 
-app:
-  version: V1.00.00.0
+# app:
+#   version: V1.00.00.0
 
 spring:
   application:
